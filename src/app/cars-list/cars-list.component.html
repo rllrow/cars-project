@@ -1,0 +1,80 @@
+<div class="container">
+	<div class="cars-list">
+		<div class="page-title">
+			Cars List
+		</div>
+		<div class="search-bar">
+			<input placeholder="Search..."  [(ngModel)]="filterQuery" (input)="searchCars()" >
+			<button (click)="setIsOpenModal()">Add</button>
+		</div>
+		<div class="cars-list-container">
+			<app-card *ngFor="let car of cars" [car]="car" class="cars-card"
+					  [carModels]="carModels"
+					  (removeCar)="filterCar($event)"
+					  (updateCar)="updateCar($event)"
+			>
+			</app-card>
+		</div>
+	
+	</div>
+	<div *ngIf="isOpenModal">
+		<app-modal><form [formGroup]="form" (ngSubmit)="submitForm()">
+			<div class="form-group">
+				<label for="name">Name </label>
+				<input
+						formControlName="name"
+						type="text"
+						class="form-control"
+						id="name"
+						placeholder="Enter name"
+				/>
+				<label for="modelId">Model</label>
+				<select formControlName="modelId" id="modelId" class="form-control">
+					<option *ngFor="let carModel of carModels"
+							[value]="carModel.id">
+						{{ carModel.name }}
+					</option>
+				</select>
+				
+				
+				<label for="color">Color</label>
+				<input
+						formControlName="color"
+						type="text"
+						class="form-control"
+						id="color"
+						placeholder="Enter color"
+				/>
+				<label for="year">Year</label>
+				<input
+						formControlName="year"
+						type="text"
+						class="form-control"
+						id="year"
+						placeholder="Enter year"
+				/>
+				
+				<div class="file-input">
+					<label>
+						<input type="file" (change)="onChangedHandler($event)" placeholder="Image">
+						<img src="../../assets/upload.png" width="30" height="30">
+						<span class="input__file-button-text">Upload image</span>
+					</label>
+				</div>
+				<div class="setting-bar">
+					<button
+							(click)="setIsOpenModal()"
+							type="button"
+							class="grey"
+					>
+						Cancel
+					</button>
+					<button type="submit" class="green" *ngIf="form.valid">
+						Save
+					</button>
+				</div>
+			</div>
+			
+			
+		</form></app-modal>
+	</div>
