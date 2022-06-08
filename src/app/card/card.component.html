@@ -34,15 +34,9 @@
 		<form [formGroup]="form" (ngSubmit)="submitUpdate(car.id)">
 			<div class="form-group">
 				<label for="name">Name </label>
-				<input
-						formControlName="name"
-						type="text"
-						class="form-control"
-						id="name"
-						placeholder="Enter name"
-				/>
+				<input formControlName="name" id="name"/>
 				<label for="modelId">Model</label>
-				<select formControlName="modelId" id="modelId" class="form-control">
+				<select formControlName="modelId" id="modelId" >
 					<option *ngFor="let carModel of carModels" [selected]="car.model.id === carModel.id"
 							[value]="carModel.id">
 						{{ carModel.name }}
@@ -51,22 +45,9 @@
 				
 				
 				<label for="color">Color</label>
-				<input
-						formControlName="color"
-						type="text"
-						class="form-control"
-						id="color"
-						placeholder="Enter color"
-				/>
+				<input formControlName="color" id="color"/>
 				<label for="year">Year</label>
-				<input
-						formControlName="year"
-						type="text"
-						class="form-control"
-						id="year"
-						placeholder="Enter year"
-				/>
-				
+				<input formControlName="year" id="year"/>
 				<div class="file-input">
 					<label>
 						<input type="file" (change)="onChangedHandler($event)" placeholder="Image">
