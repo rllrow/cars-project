@@ -6,15 +6,8 @@ export interface Car {
   image: string;
   model: CarModel;
 }
-export interface CarModel {
-  id: number;
-  name: string;
-}
-export interface CreateCar {
-  name: string;
+export interface CarModel extends Pick<Car,"id"| "name" >{}
+export interface CreateCar extends Omit<Car, 'model'> {
   modelId: number;
-  id: number;
-  color: string;
-  year: number;
-  image: string;
 }
+
